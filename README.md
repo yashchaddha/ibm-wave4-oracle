@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stackroute/ibm-wave4-oracle.svg?branch=master)](https://travis-ci.org/stackroute/ibm-wave4-oracle)
+
 **Microservices**
 
 Microservices, aka Microservice Architecture, is an architectural style that structures an application as a collection of small autonomous services, modeled around a business domain. Microservices Representation. In microservice architecture, each service is self-contained and implements a single business capability.
