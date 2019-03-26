@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.stackroute</groupId>
-	<artifactId>microservice</artifactId>
+	<artifactId>oracle</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
@@ -30,8 +30,6 @@
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
-		<module>musix-service</module>
-		<module>user-service</module>
 		<module>zuul-api</module>
 	</modules>
 

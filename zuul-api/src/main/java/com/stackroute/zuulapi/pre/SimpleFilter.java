@@ -17,17 +17,11 @@ public class SimpleFilter extends ZuulFilter {
         return 1;
     }
 
-    @Override
     public boolean shouldFilter() {
-        return true;
+        return false;
     }
 
-    @Override
     public Object run() throws ZuulException {
-        RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-
-        System.out.println("Request Method : " + request.getMethod() + " Request URL : " + request.getRequestURL().toString());
         return null;
     }
 }
