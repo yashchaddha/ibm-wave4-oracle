@@ -32,7 +32,6 @@
 		<module>eureka-server</module>
 		<module>zuul-api</module>
 		<module>manual-answer-service</module>
-		<module>oracle-frontend</module>
 	</modules>
 
 	<dependencies>
