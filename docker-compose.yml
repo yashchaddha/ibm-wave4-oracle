@@ -10,6 +10,9 @@ services:
     container_name: mongo
     network_mode: "host"
     hostname: 127.0.0.1
+    volumes:
+      - '/home/mysql/data:/data'
+
   eureka-server:
     build: eureka-server/
     restart: always
@@ -85,4 +88,13 @@ services:
       - mongo
       - kafka
 
+  oraclefrontend:
+    build: oracle-frontend/
+    image: oracle-frontend:latest
+    container_name: oracle-frontend
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 4200:4200
+    restart: always
 
