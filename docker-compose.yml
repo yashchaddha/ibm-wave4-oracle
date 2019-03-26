@@ -1,14 +1,6 @@
 version: '2'
 
 services:
-  mongo:
-    image: mongo:3.4-jessie
-    ports:
-      - 27017:27017
-    expose:
-      - 27017
-    container_name: mongo
-    network_mode: host
   eureka-server:
     build: eureka-server/
     restart: always
@@ -38,27 +30,3 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
-
-  music-service:
-    build: musix-service/
-    restart: always
-    network_mode: "host"
-    hostname: localhost
-    ports:
-      - 8090:8090
-    depends_on:
-      - config-service
-      - eureka-server
-
-
-
-  user-service:
-    build: user-service/
-    restart: always
-    network_mode: "host"
-    hostname: localhost
-    ports:
-      - 8091:8091
-    depends_on:
-      - config-service
-      - eureka-server
