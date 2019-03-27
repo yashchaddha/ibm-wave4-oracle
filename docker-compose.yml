@@ -13,6 +13,19 @@ services:
     volumes:
       - '/home/mysql/data:/data'
 
+  mysql:
+    image: mysql:latest
+    restart: always
+    container_name: mysql
+    network_mode: "host"
+    hostname: localhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: RegisterDB
+      MYSQL_PASSWORD: root123
+    ports:
+      - 3306:3306
+
   eureka-server:
     build: eureka-server/
     restart: always
@@ -40,6 +53,7 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
+
   zookeeper:
     container_name: zookeeper
     image: zookeeper:latest
@@ -76,6 +90,7 @@ services:
       #     KAFKA_CREATE_TOPICS: “Topic1:1:3,Topic2:1:1:compact”
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
+
   manual-answer:
     build: manual-answer-service/
     restart: always
@@ -87,6 +102,17 @@ services:
     depends_on:
       - mongo
       - kafka
+
+  user-registration:
+      build: user-registration/
+      restart: always
+      network_mode: "host"
+      image: user-registration
+      hostname: localhost
+      ports:
+        - 8081:8081
+      depends_on:
+        - mysql
 
   oraclefrontend:
     build: oracle-frontend/
