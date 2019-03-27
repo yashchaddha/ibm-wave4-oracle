@@ -1,6 +1,7 @@
 package com.stackroute.manualservice.Config;
 
 import com.stackroute.manualservice.domain.UserQuery;
+import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,13 @@ import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 @Configuration
 public class KafkaConsumerConfig{
 
+    //Declaration
+
+    private ManualServiceImpl manualService;
     private final Logger logger = LoggerFactory.getLogger(KafkaConsumerConfig.class);
+
+    // Consumer factory method
+
     @Bean
     public ConcurrentKafkaListenerContainerFactory<?, ?> kafkaListenerContainerFactory(
             ConcurrentKafkaListenerContainerFactoryConfigurer configurer,
@@ -34,6 +41,7 @@ public class KafkaConsumerConfig{
 
     @Bean
     public RecordMessageConverter converter() {
+
         return new StringJsonMessageConverter();
     }
 
@@ -43,20 +51,27 @@ public class KafkaConsumerConfig{
         if (query.getId().startsWith("fail")) {
             throw new RuntimeException("failed");
         }
+        else{
+            manualService.saveUser(query);
+        }
+
     }
 
     @KafkaListener(id = "dltGroup", topics = "topic1.DLT")
     public void dltListen(String in) {
+
         logger.info("Received from DLT: " + in);
     }
 
     @Bean
     public NewTopic topic() {
+
         return new NewTopic("new_query", 1, (short) 1);
     }
 
     @Bean
     public NewTopic dlt() {
+
         return new NewTopic("topic1.DLT", 1, (short) 1);
     }
 }
