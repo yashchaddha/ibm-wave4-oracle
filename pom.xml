@@ -32,7 +32,12 @@
 		<module>eureka-server</module>
 		<module>zuul-api</module>
 		<module>manual-answer-service</module>
-	</modules>
+
+		<module>BotService</module>
+
+        <module>user-registration</module>
+    </modules>
+
 
 	<dependencies>
 		<dependency>
@@ -56,6 +61,11 @@
 			<version>${jaxb.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
