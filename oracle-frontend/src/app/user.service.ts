@@ -14,4 +14,9 @@ export class UserService {
     const headers = new HttpHeaders({'Access-Control-Allow-Orgin': "*"});
     return this.http.post("http://localhost:8081/api/v1/registration",user,{headers:headers});
   }
+
+  savedQuery(query: any): Observable<any>{
+    const headers = new HttpHeaders({'Access-Control-Allow-Orgin': "*"});
+    return this.http.post("http://localhost:8090/api/send/query",query,{headers:headers});
+  }
 }
