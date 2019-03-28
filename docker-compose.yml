@@ -104,15 +104,15 @@ services:
 
 
   user-registration:
-      build: user-registration/
-      restart: always
-      network_mode: "host"
-      image: user-registration
-      hostname: localhost
-      ports:
-        - 8081:8081
-      depends_on:
-        - mysql
+    build: user-registration/
+    restart: always
+    network_mode: "host"
+    image: user-registration
+    hostname: localhost
+    ports:
+      - 8081:8081
+    depends_on:
+      - mysql
 
   oraclefrontend:
     build: oracle-frontend/
