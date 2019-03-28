@@ -1,25 +1,26 @@
-package com.stackroute.manualservice.domain;
+package com.stackroute.manualservice.Domain;
+
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("query")
-public class UserQuery {
+@Document
+public class QueryData {
 
     @Id
     private String id;
-    private String question;
+    private  String question;
     private String answer;
-    private int status;
+    private  int status;
 
-    public UserQuery(String id, String question, String answer, int status) {
+    public QueryData(String id, String question, String answer, int status) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.status = status;
     }
 
-    public UserQuery() {
+    public QueryData() {
     }
 
     public String getId() {
@@ -53,5 +54,14 @@ public class UserQuery {
     public void setStatus(int status) {
         this.status = status;
     }
-}
 
+    @Override
+    public String toString() {
+        return "QueryData{" +
+                "id='" + id + '\'' +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", status=" + status +
+                '}';
+    }
+}

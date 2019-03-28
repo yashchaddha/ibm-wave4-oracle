@@ -1,6 +1,6 @@
 package com.stackroute.manualservice.service;
 
-import com.stackroute.manualservice.domain.UserQuery;
+import com.stackroute.manualservice.Domain.QueryData;
 import com.stackroute.manualservice.repository.ManualRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,7 @@ public class ManualServiceImpl implements ManualService{
 
     @Autowired
     public ManualServiceImpl(ManualRepository manualRepository) {
+
         this.manualRepository = manualRepository;
     }
 
@@ -23,18 +24,19 @@ public class ManualServiceImpl implements ManualService{
     //1. Save user method
 
     @Override
-    public UserQuery saveUser(UserQuery userQuery) {
+    public QueryData saveUser(QueryData userQuery) {
+        System.out.println("********" + userQuery);
 
-        UserQuery query = manualRepository.save(userQuery);
+        QueryData query = manualRepository.save(userQuery);
         return  query;
 
     }
 
     // 2. Get list of query
     @Override
-    public List<UserQuery> getListOfQuery() {
+    public List<QueryData> getListOfQuery() {
 
-        List<UserQuery> userQueryList = (List<UserQuery>) manualRepository.findAll();
+        List<QueryData> userQueryList = (List<QueryData>) manualRepository.findAll();
 
         return userQueryList;
     }
@@ -42,12 +44,12 @@ public class ManualServiceImpl implements ManualService{
     //3. Update Query
 
     @Override
-    public UserQuery updateQuery(UserQuery userQuery, String  queryId) {
+    public QueryData updateQuery(QueryData userQuery, String  queryId) {
 
         Boolean isUserWithIDExists = manualRepository.existsById(queryId);
 
         if (isUserWithIDExists) {
-            UserQuery updateUser = (UserQuery) manualRepository.findById(queryId).get();
+            QueryData updateUser = (QueryData) manualRepository.findById(queryId).get();
             updateUser.setQuestion(userQuery.getQuestion());
             updateUser.setAnswer(userQuery.getAnswer());
             updateUser.setStatus(updateUser.getStatus());
@@ -61,8 +63,8 @@ public class ManualServiceImpl implements ManualService{
     // 4. Delete The user Query
 
     @Override
-    public UserQuery deleteQuery(String queryId) {
-        UserQuery deletedQuery = (UserQuery) manualRepository.findById(queryId).get();
+    public QueryData deleteQuery(String queryId) {
+        QueryData deletedQuery = (QueryData) manualRepository.findById(queryId).get();
         manualRepository.deleteById(queryId);
         return deletedQuery;
     }

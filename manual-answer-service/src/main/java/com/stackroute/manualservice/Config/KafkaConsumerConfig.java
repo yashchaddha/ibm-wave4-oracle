@@ -1,10 +1,12 @@
 package com.stackroute.manualservice.Config;
 
-import com.stackroute.manualservice.domain.UserQuery;
+import com.stackroute.manualservice.Domain.QueryData;
+import com.stackroute.manualservice.service.ManualService;
 import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +22,15 @@ import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 @Configuration
 public class KafkaConsumerConfig{
 
-    //Declaration
-
     private ManualServiceImpl manualService;
+
+    @Autowired
+    public KafkaConsumerConfig(ManualServiceImpl manualService) {
+        this.manualService = manualService;
+    }
+
+//Declaration
+
     private final Logger logger = LoggerFactory.getLogger(KafkaConsumerConfig.class);
 
     // Consumer factory method
@@ -46,16 +54,20 @@ public class KafkaConsumerConfig{
     }
 
     @KafkaListener(id = "queryGroup", topics = "new_query")
-    public void listen(UserQuery query) {
-        logger.info("Received: " + query);
-        if (query.getId().startsWith("fail")) {
-            throw new RuntimeException("failed");
-        }
-        else{
-            manualService.saveUser(query);
-        }
+    public void listen(QueryData query) {
+
+//        logger.info("Received: " + query);
+//        if (query.getId().startsWith("fail")) {
+//            throw new RuntimeException("failed");
+//        }
+//        else{
+
+           manualService.saveUser(query);
+
+//        }
 
     }
+
 
     @KafkaListener(id = "dltGroup", topics = "topic1.DLT")
     public void dltListen(String in) {
