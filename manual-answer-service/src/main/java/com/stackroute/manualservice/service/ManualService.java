@@ -1,6 +1,6 @@
 package com.stackroute.manualservice.service;
 
-import com.stackroute.manualservice.Domain.QueryData;
+import com.stackroute.manualservice.domain.QueryData;
 
 import java.util.List;
 
@@ -10,13 +10,18 @@ public interface ManualService {
     public QueryData saveUser(QueryData userQuery);
 
     //get List of QueryData
-    public List<QueryData> getListOfQuery();
+    public List<QueryData> getListOfQuestions();
 
 
-    //Update User
-    public QueryData updateQuery(QueryData user, String queryId);
+    //Update Question
+    public QueryData updateQuestion(QueryData user);
 
-    //Delete User
-    public QueryData deleteQuery(String queryId);
+    //Delete Question
+    public QueryData deleteQuestion(String queryId);
 
+    //
+
+    //Get Question by Topic name
+
+    public List<QueryData> getQuestionsByTopicName(String name);
 }

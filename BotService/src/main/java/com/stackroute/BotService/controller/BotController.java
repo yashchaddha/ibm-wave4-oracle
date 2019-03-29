@@ -1,6 +1,6 @@
 package com.stackroute.BotService.controller;
 
-import com.stackroute.BotService.Domain.QueryData;
+import com.stackroute.BotService.domain.QueryData;
 import com.stackroute.BotService.service.QueryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,6 @@ public class BotController {
         this.kafkaTemplate = kafkaTemplate;
         this.queryService = queryService;
     }
-
 
 
     @PostMapping("/send/query")

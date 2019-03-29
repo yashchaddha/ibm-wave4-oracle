@@ -9,6 +9,7 @@ public class ManualAnswerServiceApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(ManualAnswerServiceApplication.class, args);
+
 	}
 
 }

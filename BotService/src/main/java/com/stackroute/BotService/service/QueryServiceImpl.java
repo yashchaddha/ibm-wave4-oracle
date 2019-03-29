@@ -1,6 +1,6 @@
 package com.stackroute.BotService.service;
 
-import com.stackroute.BotService.Domain.QueryData;
+import com.stackroute.BotService.domain.QueryData;
 import com.stackroute.BotService.repository.QueryRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

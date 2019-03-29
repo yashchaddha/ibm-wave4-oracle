@@ -1,7 +1,9 @@
 package com.stackroute.manualservice.service;
 
-import com.stackroute.manualservice.Domain.QueryData;
+import com.stackroute.manualservice.domain.QueryData;
 import com.stackroute.manualservice.repository.ManualRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ public class ManualServiceImpl implements ManualService{
 
     private ManualRepository manualRepository;
 
+    //Declaration
+
+    private final Logger logger = LoggerFactory.getLogger(ManualServiceImpl.class);
 
     @Autowired
     public ManualServiceImpl(ManualRepository manualRepository) {
@@ -25,16 +30,16 @@ public class ManualServiceImpl implements ManualService{
 
     @Override
     public QueryData saveUser(QueryData userQuery) {
-        System.out.println("********" + userQuery);
+        logger.info("Save User:" + userQuery);
 
         QueryData query = manualRepository.save(userQuery);
         return  query;
 
     }
 
-    // 2. Get list of query
+    // 2. Get list of questions
     @Override
-    public List<QueryData> getListOfQuery() {
+    public List<QueryData> getListOfQuestions() {
 
         List<QueryData> userQueryList = (List<QueryData>) manualRepository.findAll();
 
@@ -44,8 +49,9 @@ public class ManualServiceImpl implements ManualService{
     //3. Update Query
 
     @Override
-    public QueryData updateQuery(QueryData userQuery, String  queryId) {
+    public QueryData updateQuestion(QueryData userQuery) {
 
+        String queryId = userQuery.getId();
         Boolean isUserWithIDExists = manualRepository.existsById(queryId);
 
         if (isUserWithIDExists) {
@@ -63,9 +69,20 @@ public class ManualServiceImpl implements ManualService{
     // 4. Delete The user Query
 
     @Override
-    public QueryData deleteQuery(String queryId) {
+    public QueryData deleteQuestion(String queryId) {
         QueryData deletedQuery = (QueryData) manualRepository.findById(queryId).get();
         manualRepository.deleteById(queryId);
         return deletedQuery;
     }
+
+
+    //5.Get Question by Topic name
+
+    @Override
+    public List<QueryData> getQuestionsByTopicName(String name)  {
+
+        List<QueryData> questionList = manualRepository.searchByName(name);
+        return questionList;
+    }
+
 }

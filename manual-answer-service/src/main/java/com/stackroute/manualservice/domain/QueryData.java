@@ -1,11 +1,13 @@
-package com.stackroute.BotService.Domain;
+package com.stackroute.manualservice.domain;
 
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+
 @Document
-public class QueryData {
+public class QueryData{
 
     @Id
     private String id;
@@ -53,5 +55,15 @@ public class QueryData {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "QueryData{" +
+                "id='" + id + '\'' +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", status=" + status +
+                '}';
     }
 }
