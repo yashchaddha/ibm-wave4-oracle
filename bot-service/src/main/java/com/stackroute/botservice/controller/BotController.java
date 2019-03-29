@@ -1,12 +1,8 @@
 package com.stackroute.botservice.controller;
 
-<<<<<<< HEAD:BotService/src/main/java/com/stackroute/BotService/controller/BotController.java
-import com.stackroute.BotService.domain.QueryData;
-import com.stackroute.BotService.service.QueryServiceImpl;
-=======
+
 import com.stackroute.botservice.domain.QueryData;
 import com.stackroute.botservice.service.QueryServiceImpl;
->>>>>>> 196c17920921902614a89c8ef8069e2edf773afd:bot-service/src/main/java/com/stackroute/botservice/controller/BotController.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
