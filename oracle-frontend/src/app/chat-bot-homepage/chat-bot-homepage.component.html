@@ -1,0 +1,68 @@
+<div class="container mt-1">
+  <div class="card bg-light shadow border border-primary" style="width:25rem;">
+    <span>IT HelpDesk</span>
+    <div
+      class="card-body  justify-content-end align-items-end text-light text-justify 
+     border border-primary"
+      style="height: 22rem; background-color: #f6e8eb;overflow:scroll;"
+    >
+      <li class="card w-75 float-left bg-info mb-3 rounded" style="">
+        <div class="card-body">
+          <p class="card-text">
+            1.With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+        </div>
+      </li>
+      <li class="card w-75  bg-success mb-3 ">
+        <div class="card-body">
+          <p class="card-text">
+            2. With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+        </div>
+      </li>
+      <li class="card w-75 float-left bg-info mb-3 rounded" style="">
+        <div class="card-body">
+          <p class="card-text">
+            1.With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+        </div>
+      </li>
+      <li class="card w-75  bg-success mb-3 ">
+        <div class="card-body">
+          <p class="card-text">
+            2. With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+        </div>
+      </li>
+    </div>
+    <form
+      class="container-fluid form-inline d-flex my-1"
+      #chatForm="ngForm"
+      (ngSubmit)="onSubmit(chatForm.value); chatForm.reset()"
+    >
+      <input
+        type="text"
+        class="form-control"
+        placeholder="any query ?"
+        style="width: 88%;"
+        #text="ngModel"
+        [(ngModel)]="query"
+        name="query"
+        required
+      />
+      <button
+        class="btn btn-outline-secondary ml-1"
+        [disabled]="!chatForm.form.valid"
+        type="submit"
+        id="submitbutton"
+        #button
+      >
+        <i class="fas fa-angle-double-right"></i>
+      </button>
+    </form>
+  </div>
+</div>
