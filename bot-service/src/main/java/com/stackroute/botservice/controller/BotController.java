@@ -1,7 +1,7 @@
-package com.stackroute.BotService.controller;
+package com.stackroute.botservice.controller;
 
-import com.stackroute.BotService.Domain.QueryData;
-import com.stackroute.BotService.service.QueryServiceImpl;
+import com.stackroute.botservice.domain.QueryData;
+import com.stackroute.botservice.service.QueryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 @CrossOrigin
 public class BotController {
 
@@ -35,7 +35,7 @@ public class BotController {
         QueryData question1=null;
         question1 = queryService.saveQuery(queryData);
             kafkaTemplate.send("new_query", question1);
-            return new ResponseEntity<QueryData>(question1, HttpStatus.OK);
+            return new ResponseEntity<QueryData>(question1, HttpStatus.CREATED);
 
     }
 

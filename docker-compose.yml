@@ -124,8 +124,8 @@ services:
       - 4200:4200
     restart: always
 
-  botservice:
-    build: BotService/
+  bot-service:
+    build: bot-service/
     restart: always
     network_mode: "host"
     hostname: localhost

@@ -1,4 +1,4 @@
-package com.stackroute.BotService;
+package com.stackroute.botservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

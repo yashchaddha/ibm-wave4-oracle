@@ -33,7 +33,7 @@
 		<module>zuul-api</module>
 		<module>manual-answer-service</module>
 
-		<module>BotService</module>
+		<module>bot-service</module>
 
         <module>user-registration</module>
     </modules>

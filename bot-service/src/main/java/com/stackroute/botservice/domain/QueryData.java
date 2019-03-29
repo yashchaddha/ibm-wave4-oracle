@@ -1,4 +1,4 @@
-package com.stackroute.BotService.Domain;
+package com.stackroute.botservice.domain;
 
 
 import org.springframework.data.annotation.Id;
