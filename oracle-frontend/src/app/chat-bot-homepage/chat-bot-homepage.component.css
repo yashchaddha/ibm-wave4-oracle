@@ -2,6 +2,10 @@
   color: blueviolet;
   background-color: whitesmoke;
 } */
+#main {
+  background-image: url(../../assets/federico-beccari-62960-unsplash.jpg);
+  background-size: cover;
+}
 
 .ng-valid[required],
 .ng-valid.required {
@@ -16,4 +20,57 @@
 
 body {
   background-color: gainsboro;
+}
+
+.chat::-webkit-scrollbar {
+  width: 0 !important
+}
+
+
+.chat {
+  overflow: -moz-scrollbars-none;
+}
+
+.chat {
+  -ms-overflow-style: none;
+}
+
+.sidebar {
+  padding: 48px 0 0;
+  /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
 }
