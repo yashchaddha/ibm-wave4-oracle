@@ -1,4 +1,4 @@
-package com.stackroute.manualservice.Domain;
+package com.stackroute.botservice.domain;
 
 
 import org.springframework.data.annotation.Id;
@@ -53,15 +53,5 @@ public class QueryData {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "QueryData{" +
-                "id='" + id + '\'' +
-                ", question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
-                ", status=" + status +
-                '}';
     }
 }

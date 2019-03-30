@@ -1,7 +1,6 @@
 package com.stackroute.manualservice.Config;
 
-import com.stackroute.manualservice.Domain.QueryData;
-import com.stackroute.manualservice.service.ManualService;
+import com.stackroute.manualservice.domain.QueryData;
 import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
@@ -20,16 +19,17 @@ import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
 @Configuration
-public class KafkaConsumerConfig{
+public class KafkaConsumerConfig {
 
     private ManualServiceImpl manualService;
 
     @Autowired
     public KafkaConsumerConfig(ManualServiceImpl manualService) {
+
         this.manualService = manualService;
     }
 
-//Declaration
+    //Declaration
 
     private final Logger logger = LoggerFactory.getLogger(KafkaConsumerConfig.class);
 
@@ -53,18 +53,18 @@ public class KafkaConsumerConfig{
         return new StringJsonMessageConverter();
     }
 
+
     @KafkaListener(id = "queryGroup", topics = "new_query")
     public void listen(QueryData query) {
 
-//        logger.info("Received: " + query);
-//        if (query.getId().startsWith("fail")) {
-//            throw new RuntimeException("failed");
-//        }
-//        else{
+        logger.info("Received: " + query);
+        if (query.getId().startsWith("fail")) {
+            throw new RuntimeException("failed");
+        } else {
 
-           manualService.saveUser(query);
+            manualService.saveUser(query);
 
-//        }
+        }
 
     }
 

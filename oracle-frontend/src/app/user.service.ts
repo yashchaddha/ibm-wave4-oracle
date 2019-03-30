@@ -17,6 +17,6 @@ export class UserService {
 
   savedQuery(query: any): Observable<any>{
     const headers = new HttpHeaders({'Access-Control-Allow-Orgin': "*"});
-    return this.http.post("http://localhost:8090/api/send/query",query,{headers:headers});
+    return this.http.post("http://localhost:8090/api/v1/send/query",query,{headers:headers});
   }
 }
