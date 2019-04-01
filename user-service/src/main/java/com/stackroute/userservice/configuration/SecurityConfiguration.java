@@ -75,4 +75,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.headers().cacheControl();
         httpSecurity.headers().httpStrictTransportSecurity().includeSubDomains(true).maxAgeInSeconds(32536000);
     }
+
+
 }

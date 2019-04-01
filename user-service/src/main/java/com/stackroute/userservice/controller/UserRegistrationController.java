@@ -28,6 +28,5 @@ public class UserRegistrationController {
                   return new ResponseEntity<>(new Response("user is successfully added"), HttpStatus.OK);
               }
               return null;
-
     }
 }
