@@ -7,10 +7,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Query {
 
-
+    @Id
+    private String id;
     private  String question;
     private String answer;
 
+    public Query(String id, String question, String answer) {
+        this.id = id;
+        this.question = question;
+        this.answer = answer;
+    }
+
+    @Override
+    public String toString() {
+        return "Query{" +
+                "id='" + id + '\'' +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getQuestion() {
         return question;
     }
@@ -27,10 +50,6 @@ public class Query {
         this.answer = answer;
     }
 
-    public Query(String question, String answer) {
-        this.question = question;
-        this.answer = answer;
-    }
 
 
     public Query() {

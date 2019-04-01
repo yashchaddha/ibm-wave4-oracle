@@ -1,28 +1,29 @@
 package com.stackroute.manualservice.domain;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
-
 @Document
-public class QueryData{
+public class Query {
 
     @Id
     private String id;
     private  String question;
     private String answer;
-    private  int status;
 
-    public QueryData(String id, String question, String answer, int status) {
+    public Query(String id, String question, String answer) {
         this.id = id;
         this.question = question;
         this.answer = answer;
-        this.status = status;
     }
 
-    public QueryData() {
+    @Override
+    public String toString() {
+        return "Query{" +
+                "id='" + id + '\'' +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                '}';
     }
 
     public String getId() {
@@ -32,7 +33,6 @@ public class QueryData{
     public void setId(String id) {
         this.id = id;
     }
-
     public String getQuestion() {
         return question;
     }
@@ -49,21 +49,8 @@ public class QueryData{
         this.answer = answer;
     }
 
-    public int getStatus() {
-        return status;
-    }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
-    @Override
-    public String toString() {
-        return "QueryData{" +
-                "id='" + id + '\'' +
-                ", question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
-                ", status=" + status +
-                '}';
+    public Query() {
     }
 }

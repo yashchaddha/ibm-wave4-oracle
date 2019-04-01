@@ -1,6 +1,7 @@
 package com.stackroute.manualservice.controller;
 
-import com.stackroute.manualservice.domain.QueryData;
+import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.exception.QueryNotFoundException;
 import com.stackroute.manualservice.service.ManualService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,29 +36,29 @@ public class ManualController {
     // Get  Request for getting all the questions
 
     @GetMapping("/getAllQuestions")
-    public ResponseEntity<List<QueryData>> getAllQuestions() {
+    public ResponseEntity<List<Query>> getAllQuestions() {
 
-        List<QueryData> questionList = manualService.getListOfQuestions();
-        return new ResponseEntity<List<QueryData>>(questionList, HttpStatus.OK);
+        List<Query> questionList = manualService.getListOfQuestions();
+
+        return new ResponseEntity<List<Query>>(questionList, HttpStatus.OK);
 
     }
 
 //Delete Request
 
     @PostMapping("/updateQuestion")
-    public ResponseEntity<String> updateQuestion(@RequestBody QueryData queryData) {
+    public ResponseEntity<String> updateQuestion(@RequestBody Query query) throws QueryNotFoundException {
 
-        QueryData updateQuestion = manualService.updateQuestion(queryData);
+        Query updateQuestion = manualService.updateQuestion(query);
 
         logger.info("Updated Questions:" + updateQuestion);
 
         // send data back to the bot service
         kafkaTemplate.send("update_query",updateQuestion);
 
-        //Delete the data from consumer side
-        manualService.deleteQuestion(updateQuestion.getId());
+        //Delete that quedstion from Consumer side
+        manualService.deleteQuestion(query.getId());
 
-        return new ResponseEntity<String>("Question Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<String>("Query Deleted Successfully", HttpStatus.OK);
     }
-
 }

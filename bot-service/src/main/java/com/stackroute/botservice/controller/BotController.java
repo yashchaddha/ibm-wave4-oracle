@@ -35,6 +35,7 @@ public class BotController {
 
     @PostMapping("/send/query")
     public ResponseEntity<?> sendNewQuery(@RequestBody UserQuery userQuery) {
+
         Query questionQuery = userQuery.getQuery();
         RestTemplate restTemplate = new RestTemplate();
         String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + questionQuery.getQuestion(), String.class);
@@ -42,10 +43,9 @@ public class BotController {
         userQuery.setQuery(questionQuery);
         userQuery = queryService.saveQuery(userQuery);
         kafkaTemplate.send("new_query", userQuery.getQuery());
-        userQuery.getStatus().setAnwered(true);
+        userQuery.getStatus().setAnswered(true);
         userQuery.getQuery().setAnswer("i will tell u later either ask aman");
         return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
-
 
     }
 }
