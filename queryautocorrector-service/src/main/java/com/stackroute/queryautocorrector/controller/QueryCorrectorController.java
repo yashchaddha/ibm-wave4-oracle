@@ -15,8 +15,8 @@ import java.io.IOException;
 public class QueryCorrectorController {
 
     @GetMapping("/getCorrectedQuery/{query}")
-    public ResponseEntity<?> getCorrectedQuery(@PathVariable("query") String query) throws IOException {
+    public String getCorrectedQuery(@PathVariable("query") String query) throws IOException {
         String correctedQuery = QueryAutoCorrector.correctQuery(query);
-        return new ResponseEntity<String>(correctedQuery, HttpStatus.OK);
+        return correctedQuery;
     }
 }
