@@ -134,3 +134,14 @@ services:
     depends_on:
       - kafka
       - zookeeper
+
+  queryautocorrector-service:
+    build: queryautocorrector-service/
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8595:8595
+    depends_on:
+      - bot-service
+      - eureka-server
