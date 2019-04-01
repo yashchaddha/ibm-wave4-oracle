@@ -10,7 +10,9 @@ export class ItChatServiceService {
 
   constructor(private http:HttpClient) { }
   //get chat response
+  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
   savedQuery(query){
-    return this.http.post("http://localhost:8090/api/v1/send/query",query);
+
+    return this.http.post("http://localhost:8090/api/v1/send/query",query,this.options);
   }
 }
