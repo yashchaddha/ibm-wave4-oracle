@@ -1,6 +1,6 @@
 package com.stackroute.manualservice.controller;
 
-import com.stackroute.manualservice.domain.QueryData;
+import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.service.ManualService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,29 +35,29 @@ public class ManualController {
     // Get  Request for getting all the questions
 
     @GetMapping("/getAllQuestions")
-    public ResponseEntity<List<QueryData>> getAllQuestions() {
+    public ResponseEntity<List<UserQuery>> getAllQuestions() {
 
-        List<QueryData> questionList = manualService.getListOfQuestions();
-        return new ResponseEntity<List<QueryData>>(questionList, HttpStatus.OK);
+        List<UserQuery> questionList = manualService.getListOfQuestions();
+
+        return new ResponseEntity<List<UserQuery>>(questionList, HttpStatus.OK);
 
     }
 
 //Delete Request
 
     @PostMapping("/updateQuestion")
-    public ResponseEntity<String> updateQuestion(@RequestBody QueryData queryData) {
+    public ResponseEntity<String> updateQuestion(@RequestBody UserQuery question, @RequestBody String Answer) {
 
-        QueryData updateQuestion = manualService.updateQuestion(queryData);
+        Question updateQuestion = manualService.updateQuestion(question,Answer);
 
         logger.info("Updated Questions:" + updateQuestion);
 
         // send data back to the bot service
         kafkaTemplate.send("update_query",updateQuestion);
 
-        //Delete the data from consumer side
-        manualService.deleteQuestion(updateQuestion.getId());
+        //Delete that quedstion from Consumer side
+        manualService.deleteQuestion(question.getId());
 
-        return new ResponseEntity<String>("Question Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<String>("UserQuery Deleted Successfully", HttpStatus.OK);
     }
-
 }
