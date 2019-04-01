@@ -1,6 +1,6 @@
 package com.stackroute.botservice.service;
 
-import com.stackroute.botservice.domain.QueryData;
+import com.stackroute.botservice.domain.UserQuery;
 import com.stackroute.botservice.repository.QueryRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,9 @@ public class QueryServiceImpl{
         this.queryRespository = queryRespository;
     }
 
-    public QueryData saveQuery(QueryData queryData) {
-        QueryData queryData1;
-       queryData1= (QueryData) queryRespository.save(queryData);
-       return queryData1;
+    public UserQuery saveQuery(UserQuery userQuery) {
+        UserQuery userQuery1;
+        userQuery1 = (UserQuery) queryRespository.save(userQuery);
+       return userQuery1;
     }
 }
