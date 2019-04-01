@@ -1,7 +1,7 @@
 package com.stackroute.botservice.controller;
 
 
-import com.stackroute.botservice.domain.QueryData;
+import com.stackroute.botservice.domain.UserQuery;
 import com.stackroute.botservice.service.QueryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,17 +31,12 @@ public class BotController {
 
 
     @PostMapping("/send/query")
-    public ResponseEntity<?> sendNewQuery(@RequestBody QueryData queryData) {
-        QueryData question1=null;
-        question1 = queryService.saveQuery(queryData);
-            kafkaTemplate.send("new_query", question1);
-            return new ResponseEntity<QueryData>(question1, HttpStatus.CREATED);
+    public ResponseEntity<?> sendNewQuery(@RequestBody UserQuery userQuery) {
+        UserQuery userQuery1 =null;
+        userQuery1 = queryService.saveQuery(userQuery);
+            kafkaTemplate.send("new_query", userQuery1);
+            return new ResponseEntity<UserQuery>(userQuery1, HttpStatus.CREATED);
 
-    }
-
-    @GetMapping("/query")
-    public ResponseEntity<?> getNewAnswer(@RequestBody QueryData query){
-        return new ResponseEntity<QueryData>(query, HttpStatus.OK);
     }
 
 }
