@@ -101,6 +101,7 @@ services:
     depends_on:
       - mongo
       - kafka
+      - eureka-server
 
 
   user-service:

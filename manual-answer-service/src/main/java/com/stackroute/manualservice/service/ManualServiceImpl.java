@@ -27,7 +27,7 @@ public class ManualServiceImpl implements ManualService {
 
     // Implemeneting Methods
 
-    //1. Save user method
+    //1. Save user met2hod
 
     @Override
     public Query saveQuestion(Query query) {
