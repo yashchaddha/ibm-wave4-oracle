@@ -34,7 +34,7 @@ public class BotController {
     public ResponseEntity<?> sendNewQuery(@RequestBody UserQuery userQuery) {
         UserQuery userQuery1 =null;
         userQuery1 = queryService.saveQuery(userQuery);
-            kafkaTemplate.send("new_query", userQuery1);
+            kafkaTemplate.send("new_query", userQuery1.getQuery());
             return new ResponseEntity<UserQuery>(userQuery1, HttpStatus.CREATED);
 
     }

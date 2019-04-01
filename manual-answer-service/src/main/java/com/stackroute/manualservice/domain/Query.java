@@ -4,35 +4,27 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class UserQuery {
-
-
-    //Declaration
+public class Query {
 
     @Id
     private String id;
-    private String question;
+    private  String question;
     private String answer;
 
-    //Constructor
-    public UserQuery(String id, String question, String answer) {
+    public Query(String id, String question, String answer) {
         this.id = id;
         this.question = question;
         this.answer = answer;
     }
 
-    //To string method
-
     @Override
     public String toString() {
-        return "UserQuery{" +
+        return "Query{" +
                 "id='" + id + '\'' +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
                 '}';
     }
-
-    //Getter and Setters
 
     public String getId() {
         return id;
@@ -41,22 +33,24 @@ public class UserQuery {
     public void setId(String id) {
         this.id = id;
     }
-
     public String getQuestion() {
         return question;
     }
 
-    public String setQuestion(String question) {
+    public void setQuestion(String question) {
         this.question = question;
-        return question;
     }
 
     public String getAnswer() {
         return answer;
     }
 
-    public String setAnswer(String answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
-        return answer;
+    }
+
+
+
+    public Query() {
     }
 }

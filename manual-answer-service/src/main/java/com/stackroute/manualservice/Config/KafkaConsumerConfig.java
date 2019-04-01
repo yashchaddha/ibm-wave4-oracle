@@ -1,6 +1,6 @@
 package com.stackroute.manualservice.Config;
 
-import com.stackroute.manualservice.domain.UserQuery;
+import com.stackroute.manualservice.domain.Query;
 import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
@@ -55,16 +55,18 @@ public class KafkaConsumerConfig {
 
 
     @KafkaListener(id = "queryGroup", topics = "new_query")
-    public void listen(UserQuery userQuery) {
+    public void listen(Query query) {
 
-        logger.info("Received: " + userQuery);
-        if (userQuery.getId().startsWith("fail")) {
-            throw new RuntimeException("failed");
-        } else {
+        logger.info("Received: " + query);
 
-            manualService.saveQuestion(userQuery);
-
-        }
+        manualService.saveQuestion(query);
+//        if (query.getId().startsWith("fail")) {
+//            throw new RuntimeException("failed");
+//        } else {
+//
+//
+//
+//        }
 
     }
 
