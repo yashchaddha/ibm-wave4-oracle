@@ -10,8 +10,8 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
 @CrossOrigin
+@RequestMapping("/api/v1")
 public class BotController {
 
 
@@ -33,7 +33,7 @@ public class BotController {
     @PostMapping("/send/query")
     public ResponseEntity<?> sendNewQuery(@RequestBody QueryData queryData) {
         QueryData question1=null;
-        question1 = queryService.saveQuery(queryData);
+        question1 = queryService.saveQuery(queryData.);
             kafkaTemplate.send("new_query", question1);
             return new ResponseEntity<QueryData>(question1, HttpStatus.CREATED);
 

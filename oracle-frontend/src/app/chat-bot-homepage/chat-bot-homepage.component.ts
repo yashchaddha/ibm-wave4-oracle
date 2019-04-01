@@ -1,4 +1,5 @@
-import { Component, OnInit, QueryList } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import {ItChatServiceService} from "../it-chat-service.service";
 
 interface Status {
   accepted: boolean;
@@ -19,7 +20,7 @@ interface UserQuery {
   styleUrls: ["./chat-bot-homepage.component.css"]
 })
 export class ChatBotHomepageComponent implements OnInit {
-  constructor() {}
+  constructor(private chatService: ItChatServiceService) {}
 
   query: Query = {
     question: "",
@@ -32,12 +33,19 @@ export class ChatBotHomepageComponent implements OnInit {
 
   queryList: any = [];
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
   onSubmit(value) {
     let jsonQuery = JSON.stringify({ query: this.query, status: this.status });
     console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
+    this.chatService.savedQuery(jsonQuery).subscribe(value1 => {
+      console.log(value1);
+    })
     console.log(this.queryList);
+
     value.reset();
   }
+
 }
