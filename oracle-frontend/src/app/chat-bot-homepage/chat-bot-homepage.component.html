@@ -1,15 +1,28 @@
 <div class="container-fluid mt-1 d-flex justify-content-between" id="main">
-  <div class="card bg-light shadow border border-primary" style="width:24rem; height: 30rem;">
+  <div
+    class="card bg-light shadow border border-primary"
+    style="width:24rem; height: 30rem;"
+  >
     <span class="text-center h3">IT HelpDesk</span>
-    <div class="card-body d-flex flex-column  justify-content-end align-items-end text-light text-justify 
-     border border-primary m-0 p-0" style="height: 22rem; background-color: #f6e8eb">
-      <ul class="overflow-auto w-100 chat m-0" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <div
+      class="card-body d-flex flex-column  justify-content-end align-items-end text-light text-justify 
+     border border-primary m-0 p-0"
+      style="height: 22rem; background-color: #f6e8eb"
+    >
+      <ul
+        class="overflow-auto w-100 chat m-0"
+        #scrollMe
+        [scrollTop]="scrollMe.scrollHeight"
+      >
         <div *ngFor="let item of queryList">
-
-          <li class="card w-75 float-left bg-info mb-1 rounded active" style="left:20%;" *ngIf="!item.status.answered">
+          <li
+            class="card w-75 float-left bg-info mb-1 rounded active"
+            style="left:20%;"
+            *ngIf="!item.status.answered"
+          >
             <div class="card-body">
               <p class="card-text">
-                {{item.query.question}}
+                {{ item.query.question }}
               </p>
             </div>
           </li>
@@ -17,23 +30,43 @@
           <li class="card w-75  bg-success mb-1" *ngIf="item.status.answered">
             <div class="card-body">
               <p class="card-text">
-                {{item.query.answer}}
+                {{ item.query.answer }}
               </p>
             </div>
           </li>
         </div>
       </ul>
     </div>
-    <form class="container-fluid form-inline d-flex my-1" #chatForm="ngForm" (ngSubmit)="onSubmit(chatForm)">
-      <input type="text" class="form-control" placeholder="any query ?" style="width: 87%;" #text="ngModel"
-        [(ngModel)]="query.question" name="query" required />
-      <button class="btn btn-outline-secondary ml-1" [disabled]="!chatForm.form.valid" type="submit" id="submitbutton"
-        #button>
+    <form
+      class="container-fluid form-inline d-flex my-1"
+      #chatForm="ngForm"
+      (ngSubmit)="onSubmit(chatForm)"
+    >
+      <input
+        type="text"
+        class="form-control"
+        placeholder="any query ?"
+        style="width: 87%;"
+        #text="ngModel"
+        [(ngModel)]="query.question"
+        name="query"
+        required
+      />
+      <button
+        class="btn btn-outline-secondary ml-1"
+        [disabled]="!chatForm.form.valid"
+        type="submit"
+        id="submitbutton"
+        #button
+      >
         <i class="fas fa-angle-double-right"></i>
       </button>
     </form>
   </div>
-  <nav class="col-md-2 d-none d-md-block bg-light sidebar float-right" style="height:40rem;">
+  <nav
+    class="col-md-2 d-none d-md-block bg-light sidebar float-right"
+    style="height:40rem;"
+  >
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
@@ -74,7 +107,9 @@
         </li>
       </ul>
 
-      <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+      <h6
+        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+      >
         <span>Saved reports</span>
         <a class="d-flex align-items-center text-muted" href="#">
           <span data-feather="plus-circle"></span>
@@ -108,5 +143,4 @@
       </ul>
     </div>
   </nav>
-
 </div>
