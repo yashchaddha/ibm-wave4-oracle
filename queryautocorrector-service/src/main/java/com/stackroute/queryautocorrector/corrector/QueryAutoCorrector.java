@@ -25,16 +25,19 @@ public class QueryAutoCorrector {
             /* Getting incorrect word from the query */
             String incorrectWord = query.substring(match.getFromPos(),match.getToPos());
 
-            /* Getting the first correct word suggestion from list */
-            String correctedWord = match.getSuggestedReplacements().get(0);
+            if(!match.getSuggestedReplacements().isEmpty()){
+                /* Getting the first correct word suggestion from list */
+                String correctedWord = match.getSuggestedReplacements().get(0);
 
-            /* Auto correcting the query word by word */
-            if (match.getFromPos() == 0)
-                correctedQuery = correctedQuery.replaceFirst(incorrectWord,correctedWord);
-            else if (match.getToPos() == query.length())
-                correctedQuery = correctedQuery.replaceFirst(" "+incorrectWord," "+correctedWord);
-            else
-                correctedQuery = correctedQuery.replaceFirst(" "+incorrectWord+" "," "+correctedWord+" ");
+                /* Auto correcting the query word by word */
+                if (match.getFromPos() == 0)
+                    correctedQuery = correctedQuery.replaceFirst(incorrectWord,correctedWord);
+                else if (match.getToPos() == query.length())
+                    correctedQuery = correctedQuery.replaceFirst(" "+incorrectWord," "+correctedWord);
+                else
+                    correctedQuery = correctedQuery.replaceFirst(" "+incorrectWord+" "," "+correctedWord+" ");
+            }
+
         }
 
         return correctedQuery;

@@ -26,6 +26,23 @@ services:
     ports:
       - 3306:3306
 
+  neo4j:
+    image: neo4j:3.5.3
+    ports:
+      - 7474:7474
+      - 7687:7687
+    expose:
+      - 7474
+    container_name: neo4j_docker
+    network_mode: "host"
+    hostname: localhost
+    restart: always
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/import:/import
+    environment:
+      - NEO4J_AUTH=neo4j/1234
+
   eureka-server:
     build: eureka-server/
     restart: always
@@ -101,6 +118,7 @@ services:
     depends_on:
       - mongo
       - kafka
+      - eureka-server
 
 
   user-service:
@@ -145,3 +163,14 @@ services:
     depends_on:
       - bot-service
       - eureka-server
+
+  graphqueryservice:
+    build: graphqueryservice/
+    image: graphqueryservice
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8082:8082
+    depends_on:
+      - neo4j
