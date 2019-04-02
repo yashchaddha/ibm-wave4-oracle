@@ -5,6 +5,7 @@
 #main {
   background-image: url(../../assets/federico-beccari-62960-unsplash.jpg);
   background-size: cover;
+
 }
 
 .ng-valid[required],
@@ -31,7 +32,17 @@
 .chat {
   -ms-overflow-style: none;
 }
+.chat-area{
+  background-image: url(../../assets/pawel-czerwinski-1373016-unsplash.jpg);
 
 
-
-
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.speech-bubble {
+  position: relative;
+  max-width: 75%;
+  width: fit-content;
+}

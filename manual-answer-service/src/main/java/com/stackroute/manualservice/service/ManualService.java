@@ -1,27 +1,27 @@
 package com.stackroute.manualservice.service;
 
-import com.stackroute.manualservice.domain.QueryData;
+import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.exception.QueryNotFoundException;
 
 import java.util.List;
 
 public interface ManualService {
 
     //Save user
-    public QueryData saveUser(QueryData userQuery);
+    public Query saveQuestion(Query query);
 
-    //get List of QueryData
-    public List<QueryData> getListOfQuestions();
+    //get List of Question
+    public List<Query> getListOfQuestions();
 
 
-    //Update Question
-    public QueryData updateQuestion(QueryData user);
+    //Update Query
+    public Query updateQuestion(Query query) throws QueryNotFoundException;
 
-    //Delete Question
-    public QueryData deleteQuestion(String queryId);
+    //Delete Query
+    public Query deleteQuestion(String queryId);
 
-    //
 
-    //Get Question by Topic name
+    //Get Query by Topic name
 
-    public List<QueryData> getQuestionsByTopicName(String name);
+    public List<Query> getQuestionsByTopicName(String name);
 }

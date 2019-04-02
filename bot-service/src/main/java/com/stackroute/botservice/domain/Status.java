@@ -16,12 +16,12 @@ public class Status {
     public Status() {
     }
 
-    public boolean isAnwered() {
+    public boolean isAnswered() {
         return answered;
     }
 
-    public void setAnwered(boolean anwered) {
-        this.answered = anwered;
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
     }
 
     public boolean isAccepted() {

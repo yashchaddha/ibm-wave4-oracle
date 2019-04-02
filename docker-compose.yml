@@ -21,7 +21,7 @@ services:
     hostname: localhost
     environment:
       MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: RegisterDB
+      MYSQL_DATABASE: userDB
       MYSQL_PASSWORD: root123
     ports:
       - 3306:3306
@@ -103,11 +103,11 @@ services:
       - kafka
 
 
-  user-registration:
-    build: user-registration/
+  user-service:
+    build: user-service/
     restart: always
     network_mode: "host"
-    image: user-registration
+    image: user-service
     hostname: localhost
     ports:
       - 8081:8081
@@ -134,6 +134,7 @@ services:
     depends_on:
       - kafka
       - zookeeper
+      - mongo
 
   queryautocorrector-service:
     build: queryautocorrector-service/
