@@ -1,22 +1,44 @@
-import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from '../environments/environment';
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient) { 
+  savedLink=environment.savedData;
+  loginLink=environment.loginData;
+  allUserLink=environment.allUserData;
+  singleUserLink=environment.singleUserData;
+
+
+  constructor(private http: HttpClient) {
     this.http = http;
   }
-  
-  saveUser(user: any): Observable<any>{
-    const headers = new HttpHeaders({'Access-Control-Allow-Orgin': "*"});
-    return this.http.post("http://localhost:8081/api/v1/registration",user,{headers:headers});
+  saveUser(user: any): Observable<any> {
+    const headers = new HttpHeaders({ "Access-Control-Allow-Orgin": "*" });
+    return this.http.post(this.savedLink, user, {
+      headers: headers
+    });
   }
-
-  savedQuery(query: any): Observable<any>{
-    const headers = new HttpHeaders({'Access-Control-Allow-Orgin': "*"});
-    return this.http.post("http://localhost:8090/api/v1/send/query",query,{headers:headers});
+  loginUser(user: any): Observable<any> {
+    const headers = new HttpHeaders({ "Access-Control-Allow-Orgin": "*" });
+    return this.http.post(this.loginLink, user, {
+      headers: headers
+    });
+  }
+  getAllUsers(token: any): Observable<any> {
+    const headers = new HttpHeaders({ Authorization: "Bearer " + token });
+    return this.http.get(this.allUserLink, { headers: headers });
+  }
+  getUser(token: any): Observable<any> {
+    const headers = new HttpHeaders({ Authorization: "Bearer " + token });
+    return this.http.get(this.singleUserLink, { headers: headers });
+  }
+  savedQuery(query: any): Observable<any> {
+    const headers = new HttpHeaders({ "Access-Control-Allow-Orgin": "*" });
+    return this.http.post("http://localhost:8090/api/v1/send/query", query, {
+      headers: headers
+    });
   }
 }
