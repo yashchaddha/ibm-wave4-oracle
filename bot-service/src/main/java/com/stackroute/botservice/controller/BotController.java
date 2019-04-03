@@ -35,16 +35,27 @@ public class BotController {
 
     @PostMapping("/send/query")
     public ResponseEntity<?> sendNewQuery(@RequestBody UserQuery userQuery) {
-
+        // Getting the query from UserQuery object
         Query questionQuery = userQuery.getQuery();
+
+        // Calling query auto-correcter service to correct spelling mistakes
         RestTemplate restTemplate = new RestTemplate();
         String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + questionQuery.getQuestion(), String.class);
+
+        // Modifying the query field with corrected query
         questionQuery.setQuestion(correctedQuery);
         userQuery.setQuery(questionQuery);
+
+        // Saving it in mongodb
         userQuery = queryService.saveQuery(userQuery);
+
+        // Sending it to manual-answer service in case not answered
         kafkaTemplate.send("new_query", userQuery.getQuery());
+
+        // Default answer for now
         userQuery.getStatus().setAnswered(true);
-        userQuery.getQuery().setAnswer("i will tell u later either ask aman");
+        userQuery.getQuery().setAnswer("I will tell you later or ask Aman Patla");
+
         return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
 
     }

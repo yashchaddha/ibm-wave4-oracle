@@ -152,6 +152,7 @@ services:
     depends_on:
       - kafka
       - zookeeper
+      - mongo
 
   queryautocorrector-service:
     build: queryautocorrector-service/
