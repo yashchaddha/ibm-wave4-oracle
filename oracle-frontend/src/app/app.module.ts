@@ -1,6 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { SendqueryComponent } from "./sendquery/sendquery.component";
@@ -12,6 +14,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { UserService } from "./user.service";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
+import { MatButtonModule, MatSidenavModule } from "@angular/material";
 import { UserdashboardComponent } from "./userdashboard/userdashboard.component";
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 
@@ -27,7 +30,17 @@ import { AdmindashboardComponent } from "./admindashboard/admindashboard.compone
     UserdashboardComponent,
     AdmindashboardComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    DragDropModule,
+    MatSidenavModule,
+    MatButtonModule
+  ],
   providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
