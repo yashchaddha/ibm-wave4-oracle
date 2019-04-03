@@ -20,12 +20,12 @@ public class User implements Serializable {
     private  String email;
     @Column(name = "password")
     private String password;
+    @Column(name ="confirmPassword")
+    private  String confirmPassword;
     @Column(name = "enable")
     private  boolean enable;
     @Column(name = "role")
     private String role;
-    @Column(name = "phonenumber")
-    private String phonenumber;
     @Column(name = "date")
     private Date date;
 
@@ -69,6 +69,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public boolean isEnable() {
         return enable;
     }
@@ -85,14 +93,6 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
-    }
-
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -101,15 +101,15 @@ public class User implements Serializable {
         this.date = date;
     }
 
-    public User(long id, String firstName, String lastName, String email, String password, boolean enable, String role, String phonenumber, Date date) {
+    public User(long id, String firstName, String lastName, String email, String password, String confirmPassword, boolean enable, String role, Date date) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.enable = enable;
         this.role = role;
-        this.phonenumber = phonenumber;
         this.date = date;
     }
 

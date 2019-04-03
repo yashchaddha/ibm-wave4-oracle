@@ -13,6 +13,10 @@ public class Status {
         this.accepted = accepted;
     }
 
+
+    public Status() {
+    }
+
     public boolean isAnswered() {
         return answered;
     }
