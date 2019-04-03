@@ -8,6 +8,10 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/* This is optional algorithm written by Peter Norvig for spelling auto correction.
+ * It is there for future purposes.
+ * There is a possibility we might not need it also */
+
 public class WordAutoCorrector {
     private Map<String,Integer> dict = new HashMap<>();
 
