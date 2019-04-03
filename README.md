@@ -3,7 +3,6 @@
 ![](https://img.shields.io/codecov/c/github/stackroute/ibm-wave4-oracle/master.svg?style=flat)
 
 ![](https://img.shields.io/github/issues/stackroute/ibm-wave4-oracle.svg?style=popout)
-
 ![](https://img.shields.io/github/contributors/stackroute/ibm-wave4-oracle.svg?style=popout)
 ![](https://img.shields.io/github/last-commit/stackroute/ibm-wave4-oracle/master.svg?style=popout)
 
