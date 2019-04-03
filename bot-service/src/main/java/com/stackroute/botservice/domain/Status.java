@@ -13,6 +13,7 @@ public class Status {
         this.accepted = accepted;
     }
 
+
     public Status() {
     }
 
