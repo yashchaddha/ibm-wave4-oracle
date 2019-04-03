@@ -3,7 +3,6 @@
 ![](https://img.shields.io/codecov/c/github/stackroute/ibm-wave4-oracle/v1.0.0.svg?style=flat)
 
 ![](https://img.shields.io/github/issues/stackroute/ibm-wave4-oracle.svg?style=popout)
-
 ![](https://img.shields.io/github/contributors/stackroute/ibm-wave4-oracle.svg?style=popout)
 ![](https://img.shields.io/github/last-commit/stackroute/ibm-wave4-oracle/v1.0.0.svg?style=popout)
 
@@ -12,5 +11,4 @@
 
 ****Running the System****
 
-Run ```mvn clean package``` on all the services
-
+Run ```mvn clean compile package``` on all the services

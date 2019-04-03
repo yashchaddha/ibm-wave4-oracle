@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/api/v1")
 @CrossOrigin
+@RequestMapping("/api/v1")
 public class BotController {
 
 
@@ -57,6 +57,7 @@ public class BotController {
         userQuery.getQuery().setAnswer("I will tell you later or ask Aman Patla");
 
         return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
+
 
     }
 }

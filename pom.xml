@@ -71,6 +71,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.8.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -85,7 +91,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
+   <build>
         <plugins>
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
@@ -111,13 +117,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M2</version>
+                <version>2.22.0</version>
                 <configuration>
-                    <!--suppress UnresolvedMavenProperty -->
                     <argLine>${surefireArgLine}</argLine>
-
-                    <!--suppress UnresolvedMavenProperty -->
-                    <!--                    <skipTests>${skip.unit.tests}</skipTests>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -132,10 +134,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.0.0-M2</version>
                 <configuration>
-                    <!--suppress UnresolvedMavenProperty -->
                     <argLine>${failsafeArgLine}</argLine>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <!--                    <skipTests>${skip.unit.tests}</skipTests>-->
                 </configuration>
                 <executions>
                     <execution>
@@ -245,7 +244,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>2.22.0</version>
             </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
