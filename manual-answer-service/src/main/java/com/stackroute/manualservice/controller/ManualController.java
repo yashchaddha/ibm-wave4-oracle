@@ -3,6 +3,7 @@ package com.stackroute.manualservice.controller;
 import com.stackroute.manualservice.domain.Query;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
 import com.stackroute.manualservice.service.ManualService;
+import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,14 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 @CrossOrigin
 public class ManualController {
 
     //Declaration
 
     private ManualService manualService;
-    private KafkaTemplate<Object,Object> kafkaTemplate;
+    private KafkaTemplate<Object, Object> kafkaTemplate;
 
     private final Logger logger = LoggerFactory.getLogger(ManualController.class);
 
@@ -32,10 +33,9 @@ public class ManualController {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-
     // Get  Request for getting all the questions
 
-    @GetMapping("/getAllQuestions")
+    @GetMapping("/questions")
     public ResponseEntity<List<Query>> getAllQuestions() {
 
         List<Query> questionList = manualService.getListOfQuestions();
@@ -44,9 +44,21 @@ public class ManualController {
 
     }
 
-//Delete Request
+    //Get Question by Topic Name
 
-    @PostMapping("/updateQuestion")
+    @GetMapping("/question/{topic_name}")
+    public ResponseEntity<List<Query>> getByTopicName(@PathVariable("topic_name") String topic_name) throws QueryNotFoundException {
+        ResponseEntity responseEntity;
+
+        List<Query> queryList = manualService.getQuestionsByTopicName(topic_name);
+        responseEntity = new ResponseEntity<List<Query>>(queryList, HttpStatus.ACCEPTED);
+        return responseEntity;
+
+    }
+
+    //Delete Request
+
+    @PostMapping("/question")
     public ResponseEntity<String> updateQuestion(@RequestBody Query query) throws QueryNotFoundException {
 
         Query updateQuestion = manualService.updateQuestion(query);
@@ -54,11 +66,12 @@ public class ManualController {
         logger.info("Updated Questions:" + updateQuestion);
 
         // send data back to the bot service
-        kafkaTemplate.send("update_query",updateQuestion);
+        kafkaTemplate.send("update_query", updateQuestion);
 
         //Delete that quedstion from Consumer side
         manualService.deleteQuestion(query.getId());
 
-        return new ResponseEntity<String>("Query Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<String>("Query Deleted Successfully", HttpStatus.CREATED);
     }
+
 }

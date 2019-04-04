@@ -35,7 +35,7 @@
 		<module>bot-service</module>
         <module>user-service</module>
 	    <module>queryautocorrector-service</module>
-        <module>graphqueryservice</module>
+        <module>graphquery</module>
     </modules>
 
 
