@@ -164,9 +164,9 @@ services:
       - bot-service
       - eureka-server
 
-  graphqueryservice:
-    build: graphqueryservice/
-    image: graphqueryservice
+  graphquery:
+    build: graphquery/
+    image: graphquery
     restart: always
     network_mode: "host"
     hostname: localhost
