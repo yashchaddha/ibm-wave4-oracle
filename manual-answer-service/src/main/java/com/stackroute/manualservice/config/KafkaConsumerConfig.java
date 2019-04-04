@@ -1,4 +1,4 @@
-package com.stackroute.manualservice.Config;
+package com.stackroute.manualservice.config;
 
 import com.stackroute.manualservice.domain.Query;
 import com.stackroute.manualservice.service.ManualServiceImpl;
@@ -60,13 +60,6 @@ public class KafkaConsumerConfig {
         logger.info("Received: " + query);
 
         manualService.saveQuestion(query);
-//        if (query.getId().startsWith("fail")) {
-//            throw new RuntimeException("failed");
-//        } else {
-//
-//
-//
-//        }
 
     }
 
