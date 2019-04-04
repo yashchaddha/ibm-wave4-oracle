@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ManualRepository extends MongoRepository<Query,String> {
 
-    @org.springframework.data.mongodb.repository.Query("{ 'question' : ?0 }")
+    @org.springframework.data.mongodb.repository.Query("{ 'concept' : ?0 }")
     List<Query> searchByTopicName(String name);
 
 }
