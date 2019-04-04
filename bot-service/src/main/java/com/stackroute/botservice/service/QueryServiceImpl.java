@@ -17,9 +17,7 @@ public class QueryServiceImpl{
     }
 
     public UserQuery saveQuery(UserQuery userQuery) {
-        UserQuery userQuery1;
-        userQuery1 = (UserQuery) queryRespository.save(userQuery);
-       return userQuery1;
+       return queryRespository.save(userQuery);
     }
 
 }
