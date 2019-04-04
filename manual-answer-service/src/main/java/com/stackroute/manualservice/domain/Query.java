@@ -10,12 +10,7 @@ public class Query {
     private String id;
     private  String question;
     private String answer;
-
-    public Query(String id, String question, String answer) {
-        this.id = id;
-        this.question = question;
-        this.answer = answer;
-    }
+    private String concept;
 
     @Override
     public String toString() {
@@ -23,7 +18,16 @@ public class Query {
                 "id='" + id + '\'' +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
+                ", concept='" + concept + '\'' +
                 '}';
+    }
+
+    public String getConcept() {
+        return concept;
+    }
+
+    public void setConcept(String concept) {
+        this.concept = concept;
     }
 
     public String getId() {

@@ -44,5 +44,4 @@ public class ManualRepositoryTest {
         Assert.assertNotEquals("question",savedQuery.getAnswer());
     }
 
-
 }

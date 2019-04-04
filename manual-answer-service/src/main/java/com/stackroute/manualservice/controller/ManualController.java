@@ -35,7 +35,7 @@ public class ManualController {
 
     // Get  Request for getting all the questions
 
-    @GetMapping("/getAllQuestions")
+    @GetMapping("/questions")
     public ResponseEntity<List<Query>> getAllQuestions() {
 
         List<Query> questionList = manualService.getListOfQuestions();
@@ -46,19 +46,19 @@ public class ManualController {
 
     //Get Question by Topic Name
 
-    @GetMapping("/getAllQuestion/{topic_name}")
+    @GetMapping("/question/{topic_name}")
     public ResponseEntity<List<Query>> getByTopicName(@PathVariable("topic_name") String topic_name) throws QueryNotFoundException {
         ResponseEntity responseEntity;
 
         List<Query> queryList = manualService.getQuestionsByTopicName(topic_name);
-        responseEntity = new ResponseEntity<List<Query>>(queryList, HttpStatus.OK);
+        responseEntity = new ResponseEntity<List<Query>>(queryList, HttpStatus.ACCEPTED);
         return responseEntity;
 
     }
 
     //Delete Request
 
-    @PostMapping("/updateQuestion")
+    @PostMapping("/question")
     public ResponseEntity<String> updateQuestion(@RequestBody Query query) throws QueryNotFoundException {
 
         Query updateQuestion = manualService.updateQuestion(query);
@@ -71,8 +71,7 @@ public class ManualController {
         //Delete that quedstion from Consumer side
         manualService.deleteQuestion(query.getId());
 
-        return new ResponseEntity<String>("Query Deleted Successfully", HttpStatus.OK);
+        return new ResponseEntity<String>("Query Deleted Successfully", HttpStatus.CREATED);
     }
-
 
 }
