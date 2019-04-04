@@ -1,31 +1,16 @@
 package com.stackroute.botservice.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Status {
 
-    boolean answered;
-    boolean accepted;
+    private boolean answered;
+    private boolean accepted;
 
-    public Status(boolean answered, boolean accepted) {
-        this.answered = answered;
-        this.accepted = accepted;
-    }
-
-    public boolean isAnswered() {
-        return answered;
-    }
-
-    public void setAnswered(boolean answered) {
-        this.answered = answered;
-    }
-
-    public boolean isAccepted() {
-        return accepted;
-    }
-
-    public void setAccepted(boolean accepted) {
-        this.accepted = accepted;
-    }
 }
