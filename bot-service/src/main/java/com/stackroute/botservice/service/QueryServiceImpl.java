@@ -21,4 +21,5 @@ public class QueryServiceImpl{
         userQuery1 = (UserQuery) queryRespository.save(userQuery);
        return userQuery1;
     }
+
 }
