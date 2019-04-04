@@ -12,27 +12,22 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+/* Created on : 27/03/2019 by gopal */
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1")
 public class BotController {
 
-
     KafkaTemplate<Object, Object> kafkaTemplate;
-
-
     private QueryServiceImpl queryService;
-
     public BotController() {
     }
-
     @Autowired
     public BotController(KafkaTemplate<Object, Object> kafkaTemplate, QueryServiceImpl queryService) {
         this.kafkaTemplate = kafkaTemplate;
         this.queryService = queryService;
     }
-
-
     @PostMapping("/send/query")
     public ResponseEntity<?> sendNewQuery(@RequestBody UserQuery userQuery) {
         // Getting the query from UserQuery object
@@ -57,7 +52,6 @@ public class BotController {
         userQuery.getQuery().setAnswer("I will tell you later or ask Aman Patla");
 
         return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
-
 
     }
 }
