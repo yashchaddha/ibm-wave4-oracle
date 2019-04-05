@@ -1,11 +1,10 @@
 package com.stackroute.botservice.controller;
 
 
-import com.stackroute.botservice.domain.Query;
+import com.stackroute.botservice.domain.QueryAnsListWithConcept;
+import com.stackroute.botservice.domain.QueryAnswer;
 import com.stackroute.botservice.domain.SendQuery;
-import com.stackroute.botservice.domain.UserQuery;
 import com.stackroute.botservice.service.QueryServiceImpl;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,26 +33,26 @@ public class BotController {
         this.queryService = queryService;
     }
 
-    @PostMapping("/send/query")
+    @PostMapping("/send/queryAnswer")
     public ResponseEntity<?> sendNewQuery(@RequestBody SendQuery sendQuery) {
 
-        String question= sendQuery.getQuery().getQuestion();
+        String question= sendQuery.getQueryAnswer().getQuestion();
         RestTemplate restTemplate = new RestTemplate();
        // String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + question, String.class);
 
 
         String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + question, String.class);
 
-        List<Query> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
+        List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
 
 
-        UserQuery userQuery= new UserQuery();
+        QueryAnsListWithConcept queryAnsListWithConcept = new QueryAnsListWithConcept();
 
-        userQuery.setConcept(concepts);
+        queryAnsListWithConcept.setConcept(concepts);
 
         System.out.println(concepts);
 
-        return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
+        return new ResponseEntity<QueryAnsListWithConcept>(queryAnsListWithConcept, HttpStatus.CREATED);
 
     }
 }
@@ -63,6 +62,6 @@ public class BotController {
 //userQuery = queryService.saveQuery(userQuery);
 
 // Sending it to manual-answer service in case not answered
-// kafkaTemplate.send("new_query", userQuery.getQuery());
+// kafkaTemplate.send("new_query", userQuery.getQueryAnswer());
 
 // Default answer for now
