@@ -29,7 +29,6 @@ public class UserLoginController {
 
 
     @GetMapping(value = "/getUser")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<User> getUser(Principal principal)
     {
       User user1= userService.getUserByEmail(principal.getName());
