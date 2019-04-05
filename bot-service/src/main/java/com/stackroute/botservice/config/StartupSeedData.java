@@ -32,7 +32,8 @@
 //    @Override
 //    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 //
-//        UserQuery userQuery = new UserQuery();
+//        UserQuery user
+//        Query = new UserQuery();
 //        Query query = new Query();
 //
 //        String line = "";
