@@ -167,9 +167,9 @@ services:
       - bot-service
       - eureka-server
 
-  graphqueryservice:
-    build: graphqueryservice/
-    image: graphqueryservice
+  graphquery:
+    build: graphquery/
+    image: graphquery
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -177,3 +177,12 @@ services:
       - 8082:8082
     depends_on:
       - neo4j
+
+  extract-intent-service:
+    build: extract-intent-service/
+    image: extract-intent-service
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8383:8383

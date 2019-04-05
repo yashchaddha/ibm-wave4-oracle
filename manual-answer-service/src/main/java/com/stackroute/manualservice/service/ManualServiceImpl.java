@@ -72,13 +72,12 @@ public class ManualServiceImpl implements ManualService {
         return deletedQuery;
     }
 
-
     //5.Get Query by Topic name
 
     @Override
-    public List<Query> getQuestionsByTopicName(String name) {
+    public List<Query> getQuestionsByTopicName(String topic_name) {
 
-        List<Query> queryList = manualRepository.searchByName(name);
+        List<Query> queryList = manualRepository.searchByTopicName(topic_name);
         return queryList;
     }
 
